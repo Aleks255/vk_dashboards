@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Post</title>
+</head>
+<body>
+
+	<canvas id="densityChart" width="500" height="250"></canvas>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+	<script type="text/javascript">
+		var densityCanvas = document.getElementById("densityChart");
+
+		Chart.defaults.global.defaultFontFamily = "Lato";
+		Chart.defaults.global.defaultFontSize = 19;
+
+		var densityData = {
+			label: 'Post Info',
+			data: {{ data }},
+			backgroundColor: [
+				'rgba(225, 100, 150, 0.6)',
+				'rgba(120, 100, 150, 0.6)',
+				'rgba(0, 100, 150, 0.6)'
+			],
+			borderColor: [
+				'rgba(225, 100, 150, 1)',
+				'rgba(120, 100, 150, 1)',
+				'rgba(0, 100, 150, 1)'
+			],
+			borderWidth: 1.5,
+			hoverBorderWidth: 0
+			};
+
+		var chartOptions = {
+			scales: {
+				yAxes: [{
+					barPercentage: 0.5
+				}]
+			},
+			elements: {
+				rectangle: {
+					borderSkipped: 'left',
+					}
+				}
+		};
+
+		var barChart = new Chart(densityCanvas, {
+			type: 'horizontalBar',
+			data: {
+				labels: ["Likes", "Comments", "Reposts"],
+				datasets: [densityData],
+				},
+			options: chartOptions
+		});
+	</script>
+
+</body>
+</html>
